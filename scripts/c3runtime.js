@@ -1339,6 +1339,10 @@ self.C3_ExpressionFuncs = [
 			const v0 = p._GetNode(0).GetVar();
 			return () => ((v0.GetValue()) < (8.4) ? 1 : 0);
 		},
+		p => {
+			const n0 = p._GetNode(0);
+			return () => n0.ExpObject();
+		},
 		() => 8.5,
 		() => 10,
 		() => "5% CONSULTATION",
@@ -1380,7 +1384,8 @@ self.C3_ExpressionFuncs = [
 			const v0 = p._GetNode(0).GetVar();
 			const v1 = p._GetNode(1).GetVar();
 			const v2 = p._GetNode(2).GetVar();
-			return () => (and((and((("{\"player_id\":\"" + v0.GetValue()) + "\",\"score\":"), v1.GetValue()) + ",\"rating\":"), v2.GetValue()) + "}");
+			const v3 = p._GetNode(3).GetVar();
+			return () => (and((and((and((("{\"player_id\":\"" + v0.GetValue()) + "\",\"score\":"), v1.GetValue()) + ",\"rating\":"), v2.GetValue()) + ",\"discount\":"), v3.GetValue()) + "}");
 		},
 		() => "PATCH",
 		p => {
@@ -1389,16 +1394,24 @@ self.C3_ExpressionFuncs = [
 			return () => ((and("Sending score: ", v0.GetValue()) + " email: ") + v1.GetValue());
 		},
 		p => {
+			const v0 = p._GetNode(0).GetVar();
+			const v1 = p._GetNode(1).GetVar();
+			const v2 = p._GetNode(2).GetVar();
+			const v3 = p._GetNode(3).GetVar();
+			return () => and((and((((and("Sending score: ", v0.GetValue()) + " | email: ") + v1.GetValue()) + " | rating: "), v2.GetValue()) + " | discount: "), v3.GetValue());
+		},
+		p => {
 			const f0 = p._GetNode(0).GetBoundMethod();
 			return () => ("Data" + f0());
 		},
 		() => "Full",
 		() => "Empty",
+		() => "border",
+		() => "3px solid  orange",
+		() => "3px solid  transparent",
+		() => "background",
+		() => "transparent",
 		() => "main-sound",
-		p => {
-			const n0 = p._GetNode(0);
-			return () => n0.ExpObject();
-		},
 		() => "submit_user",
 		() => "https://ubuntu.tail2124eb.ts.net/g1/submit",
 		p => {
@@ -1413,12 +1426,19 @@ self.C3_ExpressionFuncs = [
 			const n0 = p._GetNode(0);
 			return () => n0.ExpObject("id");
 		},
+		() => 9,
+		() => 20,
 		p => {
 			const f0 = p._GetNode(0).GetBoundMethod();
 			const n1 = p._GetNode(1);
-			return () => f0(n1.ExpObject(), "@");
+			return () => f0(n1.ExpObject());
 		},
-		() => -1,
+		p => {
+			const f0 = p._GetNode(0).GetBoundMethod();
+			const n1 = p._GetNode(1);
+			return () => f0(n1.ExpObject(), 10);
+		},
+		() => "@gmail.com",
 		() => "BEGIN GAME",
 		() => -10,
 		() => 6,
@@ -1465,7 +1485,6 @@ self.C3_ExpressionFuncs = [
 		},
 		() => 672,
 		() => 180,
-		() => 20,
 		() => 544,
 		() => 768,
 		() => 864,
